@@ -2,22 +2,23 @@
 
 1) This is Python fastapi backend for Galaxy_Bigfilms_backend project.
 2) Below is the docker command to up a container for this project image 
-3) docker run -p 8000:8000 -itd --network=my_network -e USER_NAME="shivam" -e PASSWORD="Qwerty@123456" -e IP_ADDRESS="http://172.18.0.2:8091" zabakar/galaxy_bigfilms_backend:latest
+3) docker run -p 8000:8000 -itd --network=my_network -e USER_NAME="" -e PASSWORD="" -e IP_ADDRESS="full http and port" backend
 4) Before running this Back container You need to up CouchBase servers Belows are the details
-5) Download the official image of Couchbase from dockerhub.
-6) docker pull couchbase
-7) up the couchbase container by following command
-8) docker run -d --name db -p 8091-8094:8091-8094 -p 11210:11210 couchbase
-9) Open the couchbase dashboard by `ip:8091`
-10) click on setup new cluster
-11) type cluster name `galaxy_bigfilms` and create a user and password
-12) accept terms and conditions and click on configure Disk, Memory, services
-13) configure according to you and click on save
-14) Main dashboard will be open
-15) now click on buckets -> Add bucket 
-16) Type bucket name `galaxy_bigfilms_movies_db` click on add bucket
-17) From the same page click on `documents -> Add document` 
-18) type `id = 1`  and past the following json data
+5) docker network create my_network
+6) Download the official image of Couchbase from dockerhub.
+7) docker pull couchbase
+8) up the couchbase container by following command
+9) docker run -d --name db -p 8091-8094:8091-8094 -p 11210:11210 --network=my_network couchbase
+10) Open the couchbase dashboard by `ip:8091`
+11) click on setup new cluster
+12) type cluster name `galaxy_bigfilms` and create a user and password
+13) accept terms and conditions and click on configure Disk, Memory, services
+14) configure according to you and click on save
+15) Main dashboard will be open
+16) now click on buckets -> Add bucket 
+17) Type bucket name `galaxy_bigfilms_movies_db` click on add bucket
+18) From the same page click on `documents -> Add document` 
+19) type `id = 1`  and past the following json data
 ```
 {
 "id":1,
