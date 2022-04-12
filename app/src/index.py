@@ -7,9 +7,10 @@ import json
 from couchbase.cluster import Cluster, ClusterOptions
 from couchbase.auth import PasswordAuthenticator
 from couchbase.cluster import QueryOptions
+bucket_name = os.environ.get('BUCKET_NAME')
 cluster = Cluster(os.environ.get('IP_ADDRESS'), ClusterOptions(
   PasswordAuthenticator(os.environ.get('USER_NAME'), os.environ.get('PASSWORD'))))
-cb = cluster.bucket('galaxy_bigfilms_movies_db')
+cb = cluster.bucket(bucket_name)
 # get a reference to the default collection, required for older Couchbase server versions
 cb_coll_default = cb.default_collection()
 # get document function
@@ -23,11 +24,11 @@ def get_movie_by_key(key):
 def lookup_by_callsign(cs):
   try:
     mov_list=[]
-    sql_query = 'select * from `galaxy_bigfilms_movies_db`'
+    sql_query = f"select * from {bucket_name}"
     row_iter = cluster.query(sql_query,QueryOptions(positional_parameters=[cs]))
       
     for row in row_iter:
-        mov_list.append(row.get("galaxy_bigfilms_movies_db"))
+        mov_list.append(row.get(bucket_name))
     return mov_list
   except Exception as e:
     return(e)
