@@ -2,7 +2,7 @@
 
 1) This is Python fastapi backend for Galaxy_Bigfilms_backend project.
 2) Below is the docker command to up a container for this project image 
-3) docker run -p 8000:8000 -itd --network=my_network -e USER_NAME="" -e PASSWORD="" -e IP_ADDRESS="full http and port" backend
+3) docker run -p 8000:8000 -itd --network=my_network -e BUCKET_NAME="galaxy_bigfilms_movies_db" -e USER_NAME="shivam" -e PASSWORD="Qwerty@123456" -e IP_ADDRESS="http://172.18.0.2:8091" zabakar/galaxy_bigfilms_backend:latest
 4) Before running this Back container You need to up CouchBase servers Belows are the details
 5) docker network create my_network
 6) Download the official image of Couchbase from dockerhub.
