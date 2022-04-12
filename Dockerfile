@@ -1,7 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.6
 
-COPY ./backend /app/backend
-COPY ./requirements.txt /app
+COPY ./app /app
 
 WORKDIR /app
 
